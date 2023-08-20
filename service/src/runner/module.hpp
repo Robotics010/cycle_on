@@ -6,15 +6,15 @@ namespace runner {
 
 class ModuleBase {
  public:
-  virtual ~ModuleBase(){};
+  virtual ~ModuleBase() {}
   void Launch() {
     Open();
     is_running_ = true;
-  };
+  }
   void Shutdown() {
     Close();
     is_running_ = false;
-  };
+  }
   bool isRunning() { return is_running_; }
 
  protected:

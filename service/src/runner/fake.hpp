@@ -9,8 +9,8 @@ namespace runner {
 class Fake : public ModuleBase {
  public:
   virtual ~Fake();
-  virtual void Open() override;
-  virtual void Close() override;
+  void Open() override;
+  void Close() override;
 
   virtual bool was_Open_called();
   virtual bool was_Close_called();

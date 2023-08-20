@@ -15,8 +15,8 @@ namespace runner {
 class Child final : public ModuleBase {
  public:
   virtual ~Child();
-  virtual void Open() override;
-  virtual void Close() override;
+  void Open() override;
+  void Close() override;
 
  private:
   childPtr child_;
