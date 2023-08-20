@@ -1,6 +1,6 @@
-#include <gtest/gtest.h>
-
 #include "runner/fake.hpp"
+
+#include <gtest/gtest.h>
 
 using namespace cycleon;
 
@@ -9,8 +9,7 @@ class FakeModule : public ::testing::Test {
   runner::Fake fake_runner;
 };
 
-TEST_F(FakeModule, IsConstructed) {
-}
+TEST_F(FakeModule, IsConstructed) {}
 
 TEST_F(FakeModule, CallLaunch) {
   EXPECT_FALSE(fake_runner.isRunning());

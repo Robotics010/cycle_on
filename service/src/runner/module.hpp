@@ -6,7 +6,7 @@ namespace runner {
 
 class ModuleBase {
  public:
-  virtual ~ModuleBase() {};
+  virtual ~ModuleBase(){};
   void Launch() {
     Open();
     is_running_ = true;
@@ -15,9 +15,8 @@ class ModuleBase {
     Close();
     is_running_ = false;
   };
-  bool isRunning() {
-    return is_running_;
-  }
+  bool isRunning() { return is_running_; }
+
  protected:
   virtual void Open() = 0;
   virtual void Close() = 0;
@@ -25,7 +24,7 @@ class ModuleBase {
   bool is_running_ = false;
 };
 
-} // runner
-} // cycleon
+}  // namespace runner
+}  // namespace cycleon
 
 #endif  // RUNNER_MODULE_H_

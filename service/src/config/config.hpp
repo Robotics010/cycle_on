@@ -20,10 +20,11 @@ class Config {
   int getInt(const std::string& key);
   double getDouble(const std::string& key);
   bool getBool(const std::string& key);
+
  private:
   ImplPtr implementation_;
 };
 
-}
+}  // namespace cycleon
 
 #endif  // CONFIG_CONFIG_H_

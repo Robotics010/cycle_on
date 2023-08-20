@@ -1,7 +1,9 @@
-#include <boost/filesystem.hpp>
+#include "config/config.hpp"
+
 #include <gtest/gtest.h>
 
-#include "config/config.hpp"
+#include <boost/filesystem.hpp>
+
 #include "config/json.hpp"
 
 using namespace cycleon;
@@ -13,8 +15,7 @@ class ConfigTest : public ::testing::Test {
   Config config;
 };
 
-TEST_F(ConfigTest, IsConstructed) {
-}
+TEST_F(ConfigTest, IsConstructed) {}
 
 // TEST_F(ConfigTest, ConstructedWithNoPath) {
 //   JsonPtr json_impl = std::make_shared<config::Json>();
@@ -26,9 +27,7 @@ TEST_F(ConfigTest, ThrowIfJsonNotExists) {
   ASSERT_FALSE(bf::exists(config_path));
   JsonPtr json_impl = std::make_shared<config::Json>(config_path);
   config.setImplementation(json_impl);
-  EXPECT_ANY_THROW({
-    config.Open();
-  });
+  EXPECT_ANY_THROW({ config.Open(); });
 }
 
 TEST_F(ConfigTest, OpenJson) {

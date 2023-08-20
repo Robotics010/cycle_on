@@ -1,9 +1,10 @@
-#include <memory>
+#include "server.hpp"
+
 #include <gtest/gtest.h>
 
-#include "runner/fake.hpp"
+#include <memory>
 
-#include "server.hpp"
+#include "runner/fake.hpp"
 
 using namespace cycleon;
 
@@ -12,8 +13,7 @@ class CycleOnServer : public ::testing::Test {
   Server server;
 };
 
-TEST_F(CycleOnServer, Constructed) {
-}
+TEST_F(CycleOnServer, Constructed) {}
 
 TEST_F(CycleOnServer, BuildWithFakeModule) {
   std::shared_ptr<runner::Fake> fake_runner;

@@ -1,8 +1,8 @@
 #ifndef RUNNER_CHILD_H_
 #define RUNNER_CHILD_H_
 
-#include <memory>
 #include <boost/process/child.hpp>
+#include <memory>
 
 #include "runner/module.hpp"
 
@@ -17,11 +17,12 @@ class Child final : public ModuleBase {
   virtual ~Child();
   virtual void Open() override;
   virtual void Close() override;
+
  private:
-    childPtr child_;
+  childPtr child_;
 };
 
-} // runner
-} // cycleon
+}  // namespace runner
+}  // namespace cycleon
 
 #endif  // RUNNER_CHILD_H_

@@ -14,12 +14,13 @@ class Fake : public ModuleBase {
 
   virtual bool was_Open_called();
   virtual bool was_Close_called();
+
  protected:
   bool is_open_called_ = false;
   bool is_close_called_ = false;
 };
 
-} // runner
-} // cycleon
+}  // namespace runner
+}  // namespace cycleon
 
 #endif  // RUNNER_FAKE_H_
