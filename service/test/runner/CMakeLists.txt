@@ -20,6 +20,7 @@ target_link_libraries(
     child_module_test PRIVATE
     child
     GTest::gtest_main
+    Boost::process
 )
 
 gtest_discover_tests(child_module_test)
