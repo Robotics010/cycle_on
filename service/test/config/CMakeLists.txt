@@ -9,6 +9,7 @@ target_link_libraries(
     config_json
     GTest::gtest_main
     Boost::filesystem
+    nlohmann_json::nlohmann_json
 )
 
 gtest_discover_tests(
