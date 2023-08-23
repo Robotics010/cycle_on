@@ -19,3 +19,16 @@ Current project is under active development and is not ready yet to be in use.
 ~/cycle_on/service$ (cd build && ctest)
 ~/cycle_on/service$ ./build/src/hello_world
 ```
+
+### cli-tool notes
+```
+$ python3 -m pip install build
+$ python3 -m pip install setuptools
+$ python3 -m pip install --user virtualenv --force-reinstall
+
+~/cycle_on/cli_tool$ python3 src/cycleon/cmd.py data/config.json
+~/cycle_on/cli_tool$ python3 -m pytest test/
+~/cycle_on/cli_tool$ python3 -m build
+~/cycle_on/cli_tool$ python3 -m pip install dist/cycleon-0.0.1-py3-none-any.whl --force-reinstall
+~/cycle_on/cli_tool$ cycleon
+```
