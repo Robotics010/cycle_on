@@ -34,18 +34,6 @@ jobs:
         run: |
           python3 -m pip install build pytest
 
-      - name: Build cli-tool (debug)
-        run: |
-          echo Build cli-tool
-          cd cli_tool
-          python3 -m build
-
-      - name: Test cli-tool (debug)
-        run: |
-          echo Test cli-tool
-          cd cli_tool
-          python3 -m pytest test/
-
       - name: Build service
         run: |
           echo Build service
