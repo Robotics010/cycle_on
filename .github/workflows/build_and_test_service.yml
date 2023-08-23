@@ -27,7 +27,7 @@ jobs:
 
       - name: Tools version
         run: |
-          echo cmake version:
+          python3 --version
           cmake --version
 
       - name: Build service
@@ -42,3 +42,15 @@ jobs:
           echo Test service
           cd service
           cd build && ctest
+
+      - name: Build cli-tool
+        run: |
+          echo Build cli-tool
+          cd cli_tool
+          python3 -m build
+
+      - name: Test cli-tool
+        run: |
+          echo Test cli-tool
+          cd cli_tool
+          python3 -m pytest test/
