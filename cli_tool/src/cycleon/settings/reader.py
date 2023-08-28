@@ -1,9 +1,9 @@
 from .implementation import Implementation
+from .config import Config
 
 
-class Config:
-    def __init__(self, path) -> None:
-        self._path = path
+class Reader:
+    def __init__(self) -> None:
         self._implementation = None
 
     @property
@@ -13,10 +13,6 @@ class Config:
     @implementation.setter
     def implementation(self, implementation: Implementation) -> None:
         self._implementation = implementation
-        self._implementation.path = self._path
 
-    def Open(self):
-        self._implementation.Open()
-
-    def getValue(self, key):
-        return self._implementation.getValue(key)
+    def Open(self, path) -> Config:
+        return self._implementation.Open(path)
