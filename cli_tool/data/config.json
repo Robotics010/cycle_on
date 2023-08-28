@@ -1,4 +1,28 @@
 {
-    "address": "localhost",
-    "port": 8181
+    "network": {
+        "address": "localhost",
+        "port": 8181
+    },
+    "action": {
+        "modules": [
+            {
+                "command": "ros2",
+                "parameters": [
+                    "launch",
+                    "carla_autoware_bridge",
+                    "carla_autoware_demo.launch.py",
+                    "port:=3000"
+                ]
+            }
+        ],
+        "simulators": [
+            {
+                "command": "./CarlaUE4.sh",
+                "parameters": [
+                    "-carla-rpc-port=3000",
+                    "-prefernvidia"
+                ]
+            }
+        ]
+    }
 }
