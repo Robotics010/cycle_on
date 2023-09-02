@@ -14,4 +14,5 @@ include(GoogleTest)
 
 add_subdirectory(config)
 add_subdirectory(server)
+add_subdirectory(network/interface)
 add_subdirectory(runner)
