@@ -1,4 +1,4 @@
-set(BOOST_INCLUDE_LIBRARIES filesystem process)
+set(BOOST_INCLUDE_LIBRARIES filesystem process asio)
 set(BOOST_ENABLE_CMAKE ON)
 
 include(FetchContent)
