@@ -14,13 +14,10 @@ tar xjf "${PKG_NAME}"
 pushd ${FOLDER_NAME}
     ./bootstrap.sh
     ./b2 -d+2 -q \
-         --build-type=complete \
-         --layout=tagged \
-         variant=release \
-         link=shared \
-         threading=multi \
          install
 popd
+
+ldconfig
 
 rm -rf ${FOLDER_NAME}
 rm -rf ${PKG_NAME}
