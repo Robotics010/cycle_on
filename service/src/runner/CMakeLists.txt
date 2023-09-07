@@ -24,7 +24,7 @@ add_library(
 
 target_link_libraries(
     child PRIVATE 
-    Boost::process)
+    )
 
 target_include_directories(
     child PUBLIC

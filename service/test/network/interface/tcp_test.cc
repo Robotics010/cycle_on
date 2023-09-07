@@ -9,11 +9,11 @@
 using namespace cycleon;
 
 TEST(TcpServerTest, IsConstructed) {
-  ::network::TcpServer tcp_server();
+  ::network::TcpServer tcp_server;
 }
 
 TEST(TcpClientTest, IsConstructed) {
-  ::network::TcpClient tcp_client();
+  ::network::TcpClient tcp_client;
 }
 
 TEST(TcpClientServerTest, Echo) {

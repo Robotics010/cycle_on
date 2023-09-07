@@ -7,5 +7,5 @@
 using namespace cycleon;
 
 TEST(TcpClientTest, IsConstructed) {
-  ::network::TcpClient tcp_client();
+  ::network::TcpClient tcp_client;
 }

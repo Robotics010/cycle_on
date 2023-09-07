@@ -12,8 +12,8 @@ TcpClient::~TcpClient() {}
 std::vector<unsigned char> TcpClient::SendAndRecieve(
     const std::vector<unsigned char>& request) {
   auto socket = Connect();
-  Write(socket, request);
-  auto response = Read(socket);
+  TcpBase::Write(socket, request);
+  auto response = TcpBase::Read(socket);
   //   std::vector<unsigned char> response;
   Disconnect(socket);
   return response;

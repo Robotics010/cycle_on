@@ -5,7 +5,7 @@ add_library(
 
 target_link_libraries(
     tcp_common PRIVATE 
-    Boost::asio)
+    )
 
 target_include_directories(
     tcp_common PUBLIC
