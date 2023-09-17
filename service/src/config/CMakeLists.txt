@@ -1,15 +1,22 @@
 add_library(config OBJECT
-            config.cc config.hpp)
+            config.hpp)
 
 target_link_libraries(
     config PRIVATE
-    config_json
     )
 
 target_include_directories(
     config PUBLIC
     # /.. is for having parent folder in the include path
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
+
+add_library(config_reader OBJECT
+    config_reader.cc config_reader.hpp)
+
+target_link_libraries(
+    config_reader PRIVATE
+    config_json
+    )
 
 add_library(
     config_impl OBJECT
@@ -32,7 +39,7 @@ add_library(
 
 target_link_libraries(
     config_json PRIVATE
-    Boost::filesystem
+    # Boost::filesystem
     nlohmann_json::nlohmann_json
 )
 

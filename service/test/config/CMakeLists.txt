@@ -5,7 +5,7 @@ add_executable(
 
 target_link_libraries(
     config_test PRIVATE
-    config
+    config_reader
     config_json
     GTest::gtest_main
     Boost::filesystem

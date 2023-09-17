@@ -1,32 +1,18 @@
 #include "config/json.hpp"
 
-#include <boost/filesystem.hpp>
+#include <iostream>
+// #include <boost/filesystem.hpp>
 #include <fstream>
 
 using namespace cycleon::config;
-namespace bf = boost::filesystem;
+// namespace bf = boost::filesystem;
 
-Json::Json(const std::string& path) : ImplementationBase(path) {}
-
-Json::~Json() {}
-
-void Json::Open() {
-  std::ifstream f(path_);
-  parsed_data_ = json::parse(f);
+Config Json::Open(const std::string& path) {
+  std::ifstream f(path);
+  auto parsed_data = json::parse(f);
+  Config config;
+  std::cout << "parsed data: " << parsed_data << std::endl;
+  parsed_data.at("network").at("address").get_to(config.network.address);
+  parsed_data.at("network").at("port").get_to(config.network.port);
+  return config;
 };
-
-std::string Json::getString(const std::string& key) {
-  return parsed_data_[key].get<std::string>();
-}
-
-int Json::getInt(const std::string& key) {
-  return parsed_data_[key].get<int>();
-}
-
-double Json::getDouble(const std::string& key) {
-  return parsed_data_[key].get<double>();
-}
-
-bool Json::getBool(const std::string& key) {
-  return parsed_data_[key].get<bool>();
-}
