@@ -9,4 +9,5 @@ target_link_libraries(
 add_subdirectory(config)
 add_subdirectory(server)
 add_subdirectory(network/interface/tcp)
+add_subdirectory(processor)
 add_subdirectory(runner)

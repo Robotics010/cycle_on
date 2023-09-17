@@ -19,7 +19,8 @@ add_library(
 
 target_link_libraries(
     tcp_server PRIVATE 
-    tcp_common)
+    tcp_common
+    echo)
 
 target_include_directories(
     tcp_server PUBLIC

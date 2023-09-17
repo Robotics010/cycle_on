@@ -5,8 +5,8 @@ add_executable(
 
 target_link_libraries(
     tcp_test PRIVATE
-    # echo
     tcp_common
+    echo
     tcp_server
     tcp_client
     GTest::gtest_main

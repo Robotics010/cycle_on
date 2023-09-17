@@ -9,6 +9,12 @@ TcpSession::TcpSession(TcpSocket socket)
       response_header_(std::vector<unsigned char>(4))
 {}
 
+void TcpSession::SetProcessRequest(
+    std::function<std::vector<unsigned char>(
+      const std::vector<unsigned char>&)> func) {
+  ProcessRequest = func;
+}
+
 void TcpSession::start() { do_read_header(); }
 
 void TcpSession::do_read_header() {
@@ -33,8 +39,8 @@ void TcpSession::do_read_body() {
         {
           if (!ec)
           {
-            response_header_ = request_header_;
-            response_ = request_;
+            response_ = ProcessRequest(request_);
+            response_header_ = ConvertIntToBytes(response_.size());
             do_write_header();
           } else {
             std::cerr << "TcpSession: read body failed" << std::endl;
@@ -75,11 +81,19 @@ TcpServer::TcpServer(ba::io_context& io_context, unsigned short port)
 
 TcpServer::~TcpServer() { }
 
+void TcpServer::SetProcessRequest(
+    std::function<std::vector<unsigned char>(
+      const std::vector<unsigned char>&)> func) {
+  ProcessRequest = func;
+}
+
 void TcpServer::do_accept() {
   acceptor_.async_accept(
       [this](boost::system::error_code ec, TcpSocket socket) {
         if (!ec) {
-          std::make_shared<TcpSession>(std::move(socket))->start();
+          auto sesstion_ptr = std::make_shared<TcpSession>(std::move(socket));
+          sesstion_ptr->SetProcessRequest(ProcessRequest);
+          sesstion_ptr->start();
         } else {
           std::cerr << "TcpServer: accept failed" << std::endl;
         }

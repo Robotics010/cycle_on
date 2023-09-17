@@ -3,6 +3,7 @@
 
 #include <atomic>
 #include <boost/asio.hpp>
+#include <functional>
 
 #include "network/interface/tcp/common.hpp"
 
@@ -12,6 +13,8 @@ namespace network {
 class TcpSession : public std::enable_shared_from_this<TcpSession>, TcpBase {
  public:
   TcpSession(TcpSocket socket);
+  void SetProcessRequest(
+    std::function<std::vector<unsigned char>(const std::vector<unsigned char>&)> func);
   void start();
  private:
   void do_read_header();
@@ -24,19 +27,20 @@ class TcpSession : public std::enable_shared_from_this<TcpSession>, TcpBase {
   std::vector<unsigned char> request_;
   std::vector<unsigned char> response_header_;
   std::vector<unsigned char> response_;
-
-  enum { max_length = 1024 };
-  char data_[max_length];
+  std::function<std::vector<unsigned char>(const std::vector<unsigned char>&)> ProcessRequest;
 };
 
 class TcpServer final : public TcpBase {
  public:
   TcpServer(ba::io_context& io_context, unsigned short port);
   virtual ~TcpServer();
+  void SetProcessRequest(
+    std::function<std::vector<unsigned char>(const std::vector<unsigned char>&)> func);
   
  private:
   void do_accept();
   ba::ip::tcp::acceptor acceptor_;
+  std::function<std::vector<unsigned char>(const std::vector<unsigned char>&)> ProcessRequest;
 };
 
 }  // namespace network
