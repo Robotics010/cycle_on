@@ -1,49 +1,59 @@
 #include <gtest/gtest.h>
 
+#include <chrono>
+#include <functional>
 #include <iostream>
-#include <vector>
+#include <thread>
+#include <atomic>
 
 #include "network/interface/tcp/client.hpp"
 #include "network/interface/tcp/server.hpp"
+// #include "processor/echo.hpp"
 
 using namespace cycleon;
 
-TEST(TcpServerTest, IsConstructed) {
-  ::network::TcpServer tcp_server;
-}
 
-TEST(TcpClientTest, IsConstructed) {
-  ::network::TcpClient tcp_client;
-}
+TEST(Tcp, Echo) {
+  ba::io_context server_io_context;
+  const unsigned short port = 8181;
+  const char port_str[] = "8181";
+  ::network::TcpServer tcp_server(server_io_context, port);
+  std::thread server_thread([&]{
+    try {
+      server_io_context.run();
+    } catch (std::exception& e) {
+      std::cerr << "Server exception: " << e.what() << "\n";
+    }
+  });
 
-TEST(TcpClientServerTest, Echo) {
-  std::string address = "localhost";
-  unsigned short port = 8181;
-  ::network::TcpServer tcp_server(address, port);
-  ::network::TcpClient tcp_client(address, port);
+  std::vector<unsigned char> request= {'H','e','l','l','o',',',' ','y','o','u',};
+  std::vector<unsigned char> response;
+  try
+  {
+    ba::io_context client_io_context;
+    ba::ip::tcp::resolver resolver(client_io_context);
+    auto endpoints = resolver.resolve("localhost", port_str);
+    ::network::TcpClient tcp_client(client_io_context, endpoints, request);
 
-}
+    client_io_context.run();
+    response = tcp_client.GetResponse();
+  }
+  catch (std::exception& e)
+  {
+    std::cerr << "Client exception: " << e.what() << "\n";
+  }
 
-TEST(TcpCommonTest, CheckIntToCharConversionWithLittleEndianess) {
-  // 175 in Little-endian
-  // 1: 175, 2: 0, 3: 0, 4: 0
-  unsigned int n = 175;
+  server_io_context.stop();
+  server_thread.join(); 
 
-  std::vector<unsigned char> bytes(4);
-  bytes[0] = n & 0xFF;
-  bytes[1] = (n >> 8) & 0xFF;
-  bytes[2] = (n >> 16) & 0xFF;
-  bytes[3] = (n >> 24) & 0xFF;
+  EXPECT_EQ(request, response);
 
-  EXPECT_EQ(bytes[0], 175);
-  EXPECT_EQ(bytes[1], 0);
-  EXPECT_EQ(bytes[2], 0);
-  EXPECT_EQ(bytes[3], 0);
-}
+  // ::processor::Echo echo_processor;
 
-TEST(TcpCommonTest, CheckCharToIntConversionWithLittleEndianess) {
-  std::vector<unsigned char> bytes = {175, 0, 0, 0};
-  unsigned int n;
-  n = bytes[0] + (bytes[1] << 8) + (bytes[2] << 16) + (bytes[3] << 24);
-  EXPECT_EQ(n, 175);
+  // using std::placeholders::_1;
+  // std::function<std::vector<unsigned char>(const std::vector<unsigned char>&)>
+  //     process_request =
+  //         std::bind(&::processor::Echo::Process, &echo_processor, _1);
+  // tcp_server.SetProcessRequest(process_request);
+
 }

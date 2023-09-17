@@ -13,16 +13,23 @@ namespace network {
 
 class TcpClient final : public TcpBase {
  public:
-  TcpClient();
-  TcpClient(const std::string& address, unsigned short port);
+  TcpClient(ba::io_context& io_context,
+            const ba::ip::tcp::resolver::results_type& endpoints,
+            const std::vector<unsigned char>& request);
   virtual ~TcpClient();
-  std::vector<unsigned char> SendAndRecieve(
-      const std::vector<unsigned char>& request);
+  std::vector<unsigned char> GetResponse();
  private:
-  TcpSocket Connect();
-  void Disconnect(TcpSocket& socket);
+  void do_connect();
+  void do_write_header();
+  void do_write_body();
+  void do_read_header();
+  void do_read_body();
 
-  ba::io_context io_context_;
+  TcpSocket socket_;
+  const ba::ip::tcp::resolver::results_type& endpoints_;
+  const std::vector<unsigned char>& request_;
+  std::vector<unsigned char> response_header_;
+  std::vector<unsigned char> response_;
 };
 
 }  // namespace network

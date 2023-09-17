@@ -9,18 +9,34 @@
 namespace cycleon {
 namespace network {
 
+class TcpSession : public std::enable_shared_from_this<TcpSession>, TcpBase {
+ public:
+  TcpSession(TcpSocket socket);
+  void start();
+ private:
+  void do_read_header();
+  void do_read_body();
+  void do_write_header();
+  void do_write_body();
+
+  TcpSocket socket_;
+  std::vector<unsigned char> request_header_;
+  std::vector<unsigned char> request_;
+  std::vector<unsigned char> response_header_;
+  std::vector<unsigned char> response_;
+
+  enum { max_length = 1024 };
+  char data_[max_length];
+};
+
 class TcpServer final : public TcpBase {
  public:
-  TcpServer();
-  TcpServer(const std::string& address, unsigned short port);
+  TcpServer(ba::io_context& io_context, unsigned short port);
   virtual ~TcpServer();
-  void Start();
-  void Stop();
+  
  private:
-  void BlockingRun();
-
-  std::atomic_bool is_running_;
-  ba::io_context io_context_;
+  void do_accept();
+  ba::ip::tcp::acceptor acceptor_;
 };
 
 }  // namespace network
