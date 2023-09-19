@@ -3,7 +3,7 @@ add_library(server OBJECT
 
 target_link_libraries(
     server PRIVATE
-    module
+    runner_module
     )
 
 target_include_directories(
