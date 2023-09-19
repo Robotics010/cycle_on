@@ -13,6 +13,8 @@ include(GoogleTest)
 
 add_subdirectory(config)
 add_subdirectory(server)
+add_subdirectory(message)
+add_subdirectory(adapter)
 add_subdirectory(network/interface)
 add_subdirectory(processor)
 add_subdirectory(runner)

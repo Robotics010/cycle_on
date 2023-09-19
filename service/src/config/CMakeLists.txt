@@ -27,11 +27,6 @@ target_include_directories(
     # /.. is for having parent folder in the include path
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
 
-FetchContent_Declare(
-    json
-    URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
-FetchContent_MakeAvailable(json)
-
 add_library(
     config_json OBJECT
     json.cc
