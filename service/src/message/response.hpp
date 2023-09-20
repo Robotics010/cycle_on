@@ -30,12 +30,14 @@ enum ResultType {
 
 class Result {
   public:
+    Result(): type(RESULT_INVALID), message("") {}
     ResultType type;
     std::string message;
 };
 
 class Response {
   public:
+    Response(): action_id(-1), type(RESPONSE_INVALID), status(STATUS_INVALID) {}
     int action_id;
     ResponseType type;
     Status status;

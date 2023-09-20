@@ -7,11 +7,9 @@
 
 using namespace cycleon::runner;
 
-Child::~Child() {}
+Child::Child(const std::vector<std::string>& arguments)
+    : arguments_(arguments) {}
 
-void Child::Open() {
-  std::vector<std::string> arguments;
-  child_.reset(new bp::child(bp::args(arguments)));
-}
+void Child::Open() { child_.reset(new bp::child(bp::args(arguments_))); }
 
 void Child::Close() { child_->terminate(); }

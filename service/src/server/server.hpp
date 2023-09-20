@@ -4,20 +4,13 @@
 #include <memory>
 #include <vector>
 
-#include "runner/module.hpp"
-
 namespace cycleon {
-
-typedef std::shared_ptr<runner::ModuleBase> ModuleBasePtr;
 
 class Server {
  public:
-  void addRunner(ModuleBasePtr runner);
-  void startAllRunners();
-  void stopAllRunners();
+  void Run();
 
  private:
-  std::vector<ModuleBasePtr> runners_;
 };
 
 }  // namespace cycleon

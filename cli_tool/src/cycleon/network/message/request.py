@@ -49,10 +49,9 @@ class Request:
 class RequestEncoder(json.JSONEncoder):
     def default(self, request):
         if isinstance(request, Request):
-
             return {
                 'type': request.type.value,
-                'id': request.action_id,
+                'action_id': request.action_id,
                 'action': {
                     'modules': [
                         {

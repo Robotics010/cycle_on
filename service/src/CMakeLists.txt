@@ -1,9 +1,15 @@
 add_executable(
-  hello_world
-  hello_world.cpp
+  service
+  service.cpp
 )
 target_link_libraries(
-  hello_world PRIVATE
+  service PRIVATE
+  server
+  tcp_server
+  tcp_common
+  handler
+  json_over_tcp_adapter
+  child
   )
 
 FetchContent_Declare(

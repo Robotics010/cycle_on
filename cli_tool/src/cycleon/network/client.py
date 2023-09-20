@@ -25,25 +25,24 @@ class Client:
 
     def Add(self, action) -> int:
         request = self._adapter.SerializeAction(action)
-        response = self._serialize_and_send(request)
+        response = self._send_and_get_response(request)
         return response.action_id
 
     def Remove(self, action_id: int):
         request = self._adapter.SerializeRemove(action_id)
-        self._serialize_and_send(request)
+        self._send_and_get_response(request)
 
     def GetStatus(self, action_id: int):
         request = self._adapter.SerializeStatus(action_id)
-        response = self._serialize_and_send(request)
+        response = self._send_and_get_response(request)
         return response.status
 
     def GetResult(self, action_id: int):
         request = self._adapter.SerializeResult(action_id)
-        response = self._serialize_and_send(request)
+        response = self._send_and_get_response(request)
         return response.result
 
-    def _serialize_and_send(self, request):
-        request_msg = self._adapter.Serialize(request)
+    def _send_and_get_response(self, request_msg):
         response_msg = self._interface.SendAndRecieve(request_msg)
         response = self._adapter.Parse(response_msg)
         return response

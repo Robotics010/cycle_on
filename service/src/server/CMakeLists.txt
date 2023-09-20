@@ -3,7 +3,9 @@ add_library(server OBJECT
 
 target_link_libraries(
     server PRIVATE
-    runner_module
+    tcp_server
+    handler
+    nlohmann_json::nlohmann_json
     )
 
 target_include_directories(

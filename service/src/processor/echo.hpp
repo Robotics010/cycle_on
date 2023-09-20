@@ -8,7 +8,6 @@ namespace processor {
 
 class Echo : public ProcessorBase {
  public:
-  virtual ~Echo() {}
   std::vector<unsigned char> Process(
       const std::vector<unsigned char>& request) override;
 };

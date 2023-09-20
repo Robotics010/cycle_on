@@ -4,8 +4,11 @@
 
 using namespace cycleon;
 
-TEST(ResponseTest, AddAction) {
+TEST(ResponseTest, DefaultValues) {
   ::message::Response response;
-  response.type = message::RESPONSE_ADD_ACTION;
-  response.result.type = message::PASS;
+  EXPECT_EQ(response.action_id, -1);
+  EXPECT_EQ(response.type, ::message::ResponseType::RESPONSE_INVALID);
+  EXPECT_EQ(response.status, ::message::Status::STATUS_INVALID);
+  EXPECT_EQ(response.result.message, "");
+  EXPECT_EQ(response.result.type, ::message::ResultType::RESULT_INVALID);
 }

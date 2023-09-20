@@ -24,6 +24,7 @@ add_library(
 
 target_link_libraries(
     handler PRIVATE
+    runner_module
     json_over_tcp_adapter
     nlohmann_json::nlohmann_json
 )
