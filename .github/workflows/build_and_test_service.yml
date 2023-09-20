@@ -19,6 +19,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container:
+      image: robotics010/cycleon
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -29,10 +31,7 @@ jobs:
         run: |
           python3 --version
           cmake --version
-      
-      - name: install py-tools
-        run: |
-          python3 -m pip install build pytest
+          g++ --version
 
       - name: Build service
         run: |

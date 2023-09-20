@@ -6,23 +6,15 @@
     "action": {
         "modules": [
             {
-                "command": "ros2",
+                "command": "touch",
                 "parameters": [
-                    "launch",
-                    "carla_autoware_bridge",
-                    "carla_autoware_demo.launch.py",
-                    "port:=3000"
+                    "/cycleon/service",
+                    "temp_file_to_check_child_runner.dat"
                 ]
             }
         ],
         "simulators": [
-            {
-                "command": "./CarlaUE4.sh",
-                "parameters": [
-                    "-carla-rpc-port=3000",
-                    "-prefernvidia"
-                ]
-            }
+            
         ]
     }
 }

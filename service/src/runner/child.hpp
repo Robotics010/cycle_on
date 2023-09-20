@@ -14,12 +14,13 @@ namespace runner {
 
 class Child final : public ModuleBase {
  public:
-  virtual ~Child();
+  Child(const std::vector<std::string>& arguments);
   void Open() override;
   void Close() override;
 
  private:
   childPtr child_;
+  std::vector<std::string> arguments_;
 };
 
 }  // namespace runner

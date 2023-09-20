@@ -9,7 +9,7 @@ from network.interface.tcp.client import Client as TcpClient  # nopep8
 
 
 def test_tcp_echo():
-    tcp_server = TcpServer(timeout=0.1)
+    tcp_server = TcpServer(timeout=0.01)
     tcp_client = TcpClient()
 
     server_thread = Thread(target=tcp_server.BlockingRun)

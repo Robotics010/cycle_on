@@ -5,6 +5,10 @@ project(cycle_on_service)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+include(FetchContent)
+find_package(Boost REQUIRED COMPONENTS
+             filesystem)
+
 enable_testing()
 
 add_subdirectory(src)

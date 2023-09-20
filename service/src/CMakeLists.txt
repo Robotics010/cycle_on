@@ -1,22 +1,26 @@
-set(BOOST_INCLUDE_LIBRARIES filesystem process)
-set(BOOST_ENABLE_CMAKE ON)
-
-include(FetchContent)
-FetchContent_Declare(
-    Boost
-    GIT_REPOSITORY https://github.com/boostorg/boost.git
-    GIT_TAG boost-1.80.0
-)
-FetchContent_MakeAvailable(Boost)
-
 add_executable(
-  hello_world
-  hello_world.cpp
+  service
+  service.cpp
 )
 target_link_libraries(
-  hello_world PRIVATE
+  service PRIVATE
+  server
+  tcp_server
+  tcp_common
+  handler
+  json_over_tcp_adapter
+  child
   )
 
-  add_subdirectory(config)
-  add_subdirectory(server)
-  add_subdirectory(runner)
+FetchContent_Declare(
+    json
+    URL https://github.com/nlohmann/json/releases/download/v3.11.2/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
+add_subdirectory(config)
+add_subdirectory(server)
+add_subdirectory(message)
+add_subdirectory(network/adapter)
+add_subdirectory(network/interface/tcp)
+add_subdirectory(processor)
+add_subdirectory(runner)

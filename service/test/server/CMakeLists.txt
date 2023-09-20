@@ -6,7 +6,11 @@ add_executable(
 target_link_libraries(
     server_test PRIVATE
     server
-    fake
+    tcp_server
+    tcp_common
+    handler
+    json_over_tcp_adapter
+    child
     GTest::gtest_main
 )
 

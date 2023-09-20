@@ -1,11 +1,10 @@
-import sys
-from socket import socket, AF_INET, SOCK_STREAM, SHUT_RDWR
+from socket import socket, AF_INET, SOCK_STREAM
 
 
 class Common:
     def __init__(self) -> None:
         self._my_socket = socket(AF_INET, SOCK_STREAM)
-        self._byte_order = sys.byteorder
+        self._byte_order = 'little'
         self._buffer_size = 65535
 
     def _read(self, client: socket) -> bytearray:

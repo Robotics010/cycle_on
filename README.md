@@ -32,3 +32,11 @@ $ python3 -m pip install --user virtualenv --force-reinstall
 ~/cycle_on/cli_tool$ python3 -m pip install dist/cycleon-0.0.1-py3-none-any.whl --force-reinstall
 ~/cycle_on/cli_tool$ cycleon
 ```
+
+### docker notes
+```
+~/cycle_on$ rm -rf service/build cli_tool/dist cli_tool/src/cycleon.egg-info
+~/cycle_on$ docker build -t cycleon/ci:0.1 .
+~/cycle_on$ docker run --name cycleon_ci -it -v ${PWD}:/cycleon --rm cycleon/ci:0.1
+~/cycle_on$ docker container exec -it cycleon_ci bash
+```

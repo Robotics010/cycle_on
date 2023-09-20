@@ -19,7 +19,8 @@ def process(args):
     client.adapter = JsonTcpAdapter()
 
     # ToDo: add low-level client cmd execute
-    # action_id = client.Add(action)
+    action_id = client.Add(config.action)
+    print(f'action_id: {action_id}')
     # client.Remove(action_id)
     # status = client.GetStatus(action_id)
     # result = client.GetResult(action_id)

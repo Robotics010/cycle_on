@@ -1,9 +1,9 @@
 add_library(
-    module OBJECT
+    runner_module OBJECT
     module.hpp)
 
 target_include_directories(
-    module PUBLIC
+    runner_module PUBLIC
     # /.. is for having parent folder in the include path
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>)
 
@@ -24,7 +24,7 @@ add_library(
 
 target_link_libraries(
     child PRIVATE 
-    Boost::process)
+    )
 
 target_include_directories(
     child PUBLIC

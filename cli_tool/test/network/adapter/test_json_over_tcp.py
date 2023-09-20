@@ -22,7 +22,7 @@ def test_serialize_request():
     adapter = JsonOverTcp()
     request_msg = adapter.Serialize(request)
 
-    assert request_msg == b'{"type":1,"id":-1,"action":{"modules":[{"command":"launch","parameters":["core","par1","par2"]}],"simulators":[{"command":"sim","parameters":["par3","par4"]}]}}'
+    assert request_msg == b'{"type":1,"action_id":-1,"action":{"modules":[{"command":"launch","parameters":["core","par1","par2"]}],"simulators":[{"command":"sim","parameters":["par3","par4"]}]}}'
 
 
 def test_parse_response():
@@ -46,22 +46,22 @@ def test_wrap_action():
     adapter = JsonOverTcp()
     request_msg = adapter.SerializeAction(action)
 
-    assert request_msg == b'{"type":1,"id":-1,"action":{"modules":[{"command":"launch","parameters":["core","par1","par2"]}],"simulators":[{"command":"sim","parameters":["par3","par4"]}]}}'
+    assert request_msg == b'{"type":1,"action_id":-1,"action":{"modules":[{"command":"launch","parameters":["core","par1","par2"]}],"simulators":[{"command":"sim","parameters":["par3","par4"]}]}}'
 
 
 def test_wrap_remove():
     adapter = JsonOverTcp()
     request_msg = adapter.SerializeRemove(12)
-    assert request_msg == b'{"type":2,"id":12,"action":{"modules":[],"simulators":[]}}'
+    assert request_msg == b'{"type":2,"action_id":12,"action":{"modules":[],"simulators":[]}}'
 
 
 def test_wrap_status():
     adapter = JsonOverTcp()
     request_msg = adapter.SerializeStatus(12)
-    assert request_msg == b'{"type":3,"id":12,"action":{"modules":[],"simulators":[]}}'
+    assert request_msg == b'{"type":3,"action_id":12,"action":{"modules":[],"simulators":[]}}'
 
 
 def test_wrap_result():
     adapter = JsonOverTcp()
     request_msg = adapter.SerializeResult(12)
-    assert request_msg == b'{"type":4,"id":12,"action":{"modules":[],"simulators":[]}}'
+    assert request_msg == b'{"type":4,"action_id":12,"action":{"modules":[],"simulators":[]}}'
