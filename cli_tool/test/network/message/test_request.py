@@ -56,4 +56,4 @@ def test_encode_to_json():
     request = Request()
     request.SetAction(action)
     assert json.dumps(
-        request, cls=RequestEncoder) == '{"type": 1, "id": -1, "action": {"modules": [{"command": "launch", "parameters": ["core", "par1", "par2"]}], "simulators": [{"command": "sim", "parameters": ["par3", "par4"]}]}}'
+        request, cls=RequestEncoder) == '{"type": 1, "action_id": -1, "action": {"modules": [{"command": "launch", "parameters": ["core", "par1", "par2"]}], "simulators": [{"command": "sim", "parameters": ["par3", "par4"]}]}}'
