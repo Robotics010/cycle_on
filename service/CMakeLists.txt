@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include(FetchContent)
+find_package(Threads REQUIRED)
 find_package(Boost REQUIRED COMPONENTS
              filesystem)
 

@@ -8,6 +8,10 @@ Typically a software team has a production code to be tested; a simulation tool 
 
 Current project is under active development and is not ready yet to be in use.
 
+Help wanted:
+* Windows integration
+* Cmake review
+
 ## Notes
 
 ### service notes
@@ -18,6 +22,13 @@ Current project is under active development and is not ready yet to be in use.
 
 ~/cycle_on/service$ (cd build && ctest)
 ~/cycle_on/service$ ./build/src/service
+```
+
+### service integration
+
+```
+~/cycle_on/$ sudo bash docker/installers/install_essentials.sh
+~/cycle_on/$ sudo bash docker/installers/install_boost.sh
 ```
 
 ### cli-tool notes

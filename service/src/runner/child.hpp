@@ -2,6 +2,7 @@
 #define RUNNER_CHILD_H_
 
 #include <boost/process/child.hpp>
+#include <boost/process/group.hpp>
 #include <memory>
 
 #include "runner/module.hpp"
@@ -20,6 +21,7 @@ class Child final : public ModuleBase {
 
  private:
   childPtr child_;
+  bp::group group_;
   std::vector<std::string> arguments_;
 };
 

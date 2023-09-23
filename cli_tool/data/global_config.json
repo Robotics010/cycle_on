@@ -4,17 +4,16 @@
         "port": 8181
     },
     "action": {
-        "modules": [
+        "modules": [],
+        "simulators": [
             {
-                "command": "touch",
+                "command": "/home/robo/CARLA_0.9.12/CarlaUE4.sh",
                 "parameters": [
-                    "/cycleon/service",
-                    "temp_file_to_check_child_runner.dat"
+                    "-prefernvidia",
+                    "-carla-rpc-port=3000",
+                    "-quality-level=Low"
                 ]
             }
-        ],
-        "simulators": [
-            
         ]
     }
 }
