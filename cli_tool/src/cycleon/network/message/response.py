@@ -5,7 +5,7 @@ import json
 class Type(Enum):
     INVALID = 0
     ADD_ACTION = 1
-    # REMOVE_ACTION = 2
+    REMOVE_ACTION = 2
     GET_ACTION_STATUS = 3
     GET_ACTION_RESULT = 4
 
@@ -28,6 +28,9 @@ class Result:
     def __init__(self) -> None:
         self._type = ResultType.INVALID
         self._message = ''
+    
+    def __str__(self) -> str:
+        return f'({self._type},{self._message})'
 
     @property
     def type(self) -> ResultType:

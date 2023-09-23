@@ -6,6 +6,7 @@ target_link_libraries(
     tcp_server
     handler
     nlohmann_json::nlohmann_json
+    Threads::Threads
     )
 
 target_include_directories(
